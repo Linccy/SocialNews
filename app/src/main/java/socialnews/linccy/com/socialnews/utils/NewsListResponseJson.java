@@ -1,4 +1,4 @@
-package socialnews.linccy.com.socialnews;
+package socialnews.linccy.com.socialnews.utils;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package socialnews.linccy.com.socialnews;
+package socialnews.linccy.com.socialnews.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +21,11 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import socialnews.linccy.com.socialnews.utils.Constant;
+import socialnews.linccy.com.socialnews.utils.NewsItem;
+import socialnews.linccy.com.socialnews.adapter.NewsItemAdapter;
+import socialnews.linccy.com.socialnews.utils.NewsListResponseJson;
+import socialnews.linccy.com.socialnews.R;
 
 /**
  * A placeholder fragment containing a simple view.

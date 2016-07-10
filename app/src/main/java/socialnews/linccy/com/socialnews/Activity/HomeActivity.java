@@ -1,4 +1,4 @@
-package socialnews.linccy.com.socialnews;
+package socialnews.linccy.com.socialnews.Activity;
 
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -17,6 +17,8 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import socialnews.linccy.com.socialnews.R;
+import socialnews.linccy.com.socialnews.adapter.SectionsPagerAdapter;
 
 public class HomeActivity extends BaseActivity {
 

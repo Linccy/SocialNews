@@ -1,4 +1,4 @@
-package socialnews.linccy.com.socialnews;/**
+package socialnews.linccy.com.socialnews.fragment;/**
  * Created by yjx on 15/5/1.
  */
 

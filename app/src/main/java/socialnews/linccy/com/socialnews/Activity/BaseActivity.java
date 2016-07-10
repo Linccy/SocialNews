@@ -1,4 +1,4 @@
-package socialnews.linccy.com.socialnews;
+package socialnews.linccy.com.socialnews.Activity;
 
 import android.content.Context;
 import android.content.Intent;

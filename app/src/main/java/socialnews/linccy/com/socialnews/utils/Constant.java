@@ -1,4 +1,4 @@
-package socialnews.linccy.com.socialnews;
+package socialnews.linccy.com.socialnews.utils;
 
 /**
  * Created by Lcc on 2016/7/9.

@@ -1,8 +1,10 @@
-package socialnews.linccy.com.socialnews;
+package socialnews.linccy.com.socialnews.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import socialnews.linccy.com.socialnews.fragment.NewsListFragment;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

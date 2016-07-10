@@ -1,4 +1,4 @@
-package socialnews.linccy.com.socialnews;
+package socialnews.linccy.com.socialnews.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +13,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import socialnews.linccy.com.socialnews.utils.NewsItem;
+import socialnews.linccy.com.socialnews.R;
 
 /**
  * Created by Lcc on 2016/7/9.
