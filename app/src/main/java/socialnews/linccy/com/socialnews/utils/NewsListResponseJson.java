@@ -7,31 +7,31 @@ import java.util.List;
  */
 
 public class NewsListResponseJson {
-    private int code;
+    private int error;
     private String msg;
-    private List<NewsItem> newslist;
+    private List<NewsItem> data;
 
-    public NewsListResponseJson(int code, String msg, List<NewsItem> newslist) {
-        this.code = code;
+    public NewsListResponseJson(int error, String msg, List<NewsItem> data) {
+        this.error = error;
         this.msg = msg;
-        this.newslist = newslist;
+        this.data = data;
     }
 
     @Override
     public String toString() {
         return "NewsListResponseJson{" +
-                "code=" + code +
+                "error=" + error +
                 ", msg='" + msg + '\'' +
-                ", newslist=" + newslist +
+                ", data=" + data +
                 '}';
     }
 
-    public int getCode() {
-        return code;
+    public int getError() {
+        return error;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setError(int error) {
+        this.error = error;
     }
 
     public String getMsg() {
@@ -42,11 +42,11 @@ public class NewsListResponseJson {
         this.msg = msg;
     }
 
-    public List<NewsItem> getNewslist() {
-        return newslist;
+    public List<NewsItem> getData() {
+        return data;
     }
 
-    public void setNewslist(List<NewsItem> newslist) {
-        this.newslist = newslist;
+    public void setData(List<NewsItem> data) {
+        this.data = data;
     }
 }

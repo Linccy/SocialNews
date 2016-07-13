@@ -1,5 +1,6 @@
 package socialnews.linccy.com.socialnews.Activity;
 
+import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -9,16 +10,21 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import socialnews.linccy.com.socialnews.R;
 import socialnews.linccy.com.socialnews.adapter.SectionsPagerAdapter;
+import socialnews.linccy.com.socialnews.fragment.NewsListFragment;
 
 public class HomeActivity extends BaseActivity {
 
@@ -49,21 +55,49 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
+        String[] items = new String[]{"旅游新闻", "今日要闻", "科技新闻", "游戏新闻"};
+        List<NewsListFragment> fragments = new ArrayList<NewsListFragment>();
+
+        for(int i=0;i<4;i++){
+            NewsListFragment fragment = new NewsListFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("sectionnum",i+1);
+            fragment.setArguments(bundle);
+            fragments.add(fragment);
+        }
 
         slidingMenu = new SlidingMenu(this);
         slidingMenu.setMode(SlidingMenu.LEFT);
         slidingMenu.setBehindOffsetRes(R.dimen.sliding_menu_offset);
-        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         slidingMenu.setMenu(R.layout.slidingmenu);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), items, fragments);
 
         // Set up the ViewPager with the sections adapter.
         container.setAdapter(mSectionsPagerAdapter);
+        container.setCurrentItem(0);
+        container.setOffscreenPageLimit(1);
+        container.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.d("选择的页面：",String.valueOf(position));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(container);
     }

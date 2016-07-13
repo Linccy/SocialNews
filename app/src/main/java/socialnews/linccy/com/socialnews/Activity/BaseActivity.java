@@ -86,5 +86,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                 transaction.add(id, newFragment, tag);
             }
         }
+        transaction.commitAllowingStateLoss();
     }
 }

@@ -10,61 +10,86 @@ package socialnews.linccy.com.socialnews.utils;
  */
 public class NewsItem {
 
-    private String ctime;//时间
+    private String id;
     private String title;//标题
-    private String description;//描述
-    private String picUrl;//图片地址
-    private String url;//内容地址
+    private String link;//内容地址
+    private String descr;//描述
+    private String refinfo;//来源
+    private String thumb;//图片地址
+    private String time;//时间
+    private String viewnum;//意义不明
 
-    public NewsItem(String ctime, String title, String description, String picUrl, String url) {
-        this.ctime = ctime;
-        this.title = title;
-        this.description = description;
-        this.picUrl = picUrl;
-        this.url = url;
+    public NewsItem(String id, String title, String link, String descr, String refinfo, String thumb, String time, String viewnum) {
+        this.id = id;
+        this.title = CharacterConversion.convertUnicode(title);
+        this.link = link;
+        this.descr = CharacterConversion.convertUnicode(descr);
+        this.refinfo = CharacterConversion.convertUnicode(refinfo);
+        this.thumb = thumb;
+        this.time = time;
+        this.viewnum = viewnum;
     }
 
     @Override
     public String toString() {
         return "NewsItem{" +
-                "ctime='" + ctime + '\'' +
+                "descr='" + descr + '\'' +
+                ", id='" + id + '\'' +
                 ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", picUrl='" + picUrl + '\'' +
-                ", url='" + url + '\'' +
+                ", link='" + link + '\'' +
+                ", refinfo='" + refinfo + '\'' +
+                ", thumb='" + thumb + '\'' +
+                ", time='" + time + '\'' +
+                ", viewnum='" + viewnum + '\'' +
                 '}';
     }
 
-    public String getUrl() {
-        return url;
+    public String getDescr() {
+        return descr;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setDescr(String descr) {
+        this.descr = descr;
     }
 
-    public String getDescription() {
-        return description;
+    public String getId() {
+        return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getPicUrl() {
-        return picUrl;
+    public String getLink() {
+        return link;
     }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public String getCtime() {
-        return ctime;
+    public String getRefinfo() {
+        return refinfo;
     }
 
-    public void setCtime(String ctime) {
-        this.ctime = ctime;
+    public void setRefinfo(String refinfo) {
+        this.refinfo = refinfo;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getTitle() {
@@ -73,5 +98,13 @@ public class NewsItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getViewnum() {
+        return viewnum;
+    }
+
+    public void setViewnum(String viewnum) {
+        this.viewnum = viewnum;
     }
 }

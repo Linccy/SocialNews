@@ -3,15 +3,16 @@
     android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    android:padding="6dp"
-    card_view:cardBackgroundColor="#ffdddddd"
-    card_view:cardCornerRadius="8dp"
+    android:layout_margin="1dp"
+    android:padding="2dp"
+    card_view:cardBackgroundColor="#ffffff"
+    card_view:cardCornerRadius="4dp"
     card_view:cardElevation="6dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/ii"
         android:orientation="horizontal"
         android:layout_margin="4dp">
 
