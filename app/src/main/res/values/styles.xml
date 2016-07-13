@@ -17,6 +17,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="textLight">@color/colorPrimaryNight</item>
+        <item name="android:actionModeBackground">@color/white</item>
         <item name="appBg">@color/white</item>
         <item name="textNight">@color/gray</item>
     </style>

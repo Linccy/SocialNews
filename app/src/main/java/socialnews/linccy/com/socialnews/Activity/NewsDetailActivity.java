@@ -1,8 +1,10 @@
 package socialnews.linccy.com.socialnews.Activity;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -34,9 +36,11 @@ public class NewsDetailActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        toolbar.setTitleTextColor(Color.WHITE);
+//        toolbar.setTitleTextColor(Color.WHITE);
+
+        toolbar.setTitle("新闻正文");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_actionbar_back);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mQueue = Volley.newRequestQueue(this);
         link = (String) getIntent().getSerializableExtra("link");
 //        getNewDetail(link);
@@ -80,6 +84,27 @@ public class NewsDetailActivity extends BaseActivity {
                 Toast.makeText(NewsDetailActivity.this, "请求数据失败", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            case R.id.action_share:
+                Toast.makeText(NewsDetailActivity.this, link, Toast.LENGTH_SHORT).show();
+                Intent shareIntent = new Intent();
+                shareIntent.putExtra(Intent.EXTRA_STREAM, link);
+                shareIntent.setType("text/plain");
+                startActivity(Intent.createChooser(shareIntent, "分享到"));
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_newsdetail_title, menu);
+        return true;
     }
 
     @Override

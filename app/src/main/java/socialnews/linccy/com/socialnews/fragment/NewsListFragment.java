@@ -44,6 +44,8 @@ public class NewsListFragment extends BaseFragment {
     private List<NewsItem> newsItems = new ArrayList<>();
     RequestQueue mQueue;
     private int sectionNumber;
+    private boolean action;//true表示刷新，false表示加载更多
+    private boolean isVisibleToUser;//当前UI是否可见
     NewsItemAdapter adapter;
     @BindView(R.id.sl)
     SwipeLoadRefreshLayout sl;
@@ -73,8 +75,9 @@ public class NewsListFragment extends BaseFragment {
         super.initData();
         sectionNumber = getArguments().getInt("STATE");
 //        textView.setText("fuck");
+        sl.setColorSchemeColors(R.color.gray, R.color.colorPrimary);
         Bundle bundle = new Bundle();
-        constant = new Constant(sectionNumber, 10);
+        constant = new Constant(sectionNumber, 20);
         mQueue = Volley.newRequestQueue(getContext());
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -83,9 +86,12 @@ public class NewsListFragment extends BaseFragment {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("数据加载中....");
         progressDialog.show();
+        if (isVisibleToUser) {
+            progressDialog.cancel();
+        }
         getNewsData(constant.getRefreshUrl());
-//        adapter = new NewsItemAdapter(newsItems);
-//        mRecyclerView.setAdapter(adapter);
+        adapter = new NewsItemAdapter(newsItems);
+        mRecyclerView.setAdapter(adapter);
 
     }
 
@@ -100,11 +106,17 @@ public class NewsListFragment extends BaseFragment {
             @Override
             public void onResponse(String response) {
                 NewsListResponseJson newsListJsonObject = gson.fromJson(response, NewsListResponseJson.class);
-                newsItems = newsListJsonObject.getData();
-//                constant.setSid(newsItems.get(newsItems.size()).getId());
+                if (action) {//刷新时的操作
+                    newsItems = newsListJsonObject.getData();
+                    adapter.notifyDataSetChanged();
+                    sl.setRefreshing(false);
+                } else {//加载更多时的操作
+                    newsItems.addAll(newsListJsonObject.getData());
+                    adapter.notifyDataSetChanged();
+                    sl.setLoading(false);
+                }
+                constant.setSid(newsItems.get(newsItems.size() - 1).getId());//设置最后一条新闻的id用于加载更多
                 progressDialog.cancel();
-                adapter = new NewsItemAdapter(newsItems);
-                mRecyclerView.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
 
@@ -124,6 +136,12 @@ public class NewsListFragment extends BaseFragment {
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {//在这里判断UI是否可见
+        this.isVisibleToUser = isVisibleToUser;
+        super.setUserVisibleHint(isVisibleToUser);
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_home_child;
     }
@@ -136,18 +154,31 @@ public class NewsListFragment extends BaseFragment {
     @Override
     protected void setListener() {
         super.setListener();
+        sl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                setIsRefresh();
+                getNewsData(constant.getRefreshUrl());
+            }
+        });
         sl.setOnLoadListener(new SwipeLoadRefreshLayout.OnLoadListener() {
 
             @Override
             public void onLoad() {
+//                Toast.makeText(getContext(), "拉到底了", Toast.LENGTH_SHORT).show();
+                setIsLoad();
+                sl.setLoading(true);
+                getNewsData(constant.getLoadUrl());
+            }
+        });
+    }
 
-            }
-        });
-        sl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getNewsData(constant.getRefreshUrl());
-            }
-        });
+
+    public void setIsRefresh() {
+        this.action = true;
+    }
+
+    public void setIsLoad() {
+        this.action = false;
     }
 }
