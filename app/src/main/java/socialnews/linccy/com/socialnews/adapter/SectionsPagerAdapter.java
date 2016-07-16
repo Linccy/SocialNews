@@ -9,7 +9,7 @@ import android.util.Log;
 
 import java.util.List;
 
-import socialnews.linccy.com.socialnews.fragment.NewsListFragment;
+import socialnews.linccy.com.socialnews.fragment.NewsChildFragment;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -18,9 +18,9 @@ import socialnews.linccy.com.socialnews.fragment.NewsListFragment;
 public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] sectionitems;
-    private List<NewsListFragment> fragments;
+    private List<NewsChildFragment> fragments;
 
-    public SectionsPagerAdapter(FragmentManager fm, String[] sectionitems, List<NewsListFragment> fragments) {
+    public SectionsPagerAdapter(FragmentManager fm, String[] sectionitems, List<NewsChildFragment> fragments) {
         super(fm);
         this.sectionitems = sectionitems;
         this.fragments = fragments;
@@ -30,7 +30,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-//        return NewsListFragment.newInstance(position + 1);
+//        return NewsChildFragment.newInstance(position + 1);
         Bundle bundle = new Bundle();
         bundle.putInt("STATE", position + 1);
         fragments.get(position).setArguments(bundle);

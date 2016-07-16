@@ -67,9 +67,9 @@ public class NewsDetailActivity extends BaseActivity {
     }
 
     /**
-     * 获取新闻页面
+     * 获取新闻页面,暂时未用到
      *
-     * @param link
+     * @param link：完整的新闻正文URL
      */
     private void getNewDetail(String link) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, link, new Response.Listener<String>() {
@@ -91,12 +91,14 @@ public class NewsDetailActivity extends BaseActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                break;
             case R.id.action_share:
                 Toast.makeText(NewsDetailActivity.this, link, Toast.LENGTH_SHORT).show();
                 Intent shareIntent = new Intent();
                 shareIntent.putExtra(Intent.EXTRA_STREAM, link);
                 shareIntent.setType("text/plain");
                 startActivity(Intent.createChooser(shareIntent, "分享到"));
+                break;
         }
         return true;
     }

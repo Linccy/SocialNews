@@ -35,7 +35,7 @@ import socialnews.linccy.com.socialnews.view.SwipeLoadRefreshLayout;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class NewsListFragment extends BaseFragment {
+public class NewsChildFragment extends BaseFragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -55,15 +55,15 @@ public class NewsListFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     ProgressDialog progressDialog;
 
-    public NewsListFragment() {
+    public NewsChildFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-//    public static NewsListFragment newInstance(int sectionNumber1) {
-//        NewsListFragment fragment = new NewsListFragment();
+//    public static NewsChildFragment newInstance(int sectionNumber1) {
+//        NewsChildFragment fragment = new NewsChildFragment();
 //        fragment.sectionNumber = sectionNumber1;
 //        Bundle args = new Bundle();
 //        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
